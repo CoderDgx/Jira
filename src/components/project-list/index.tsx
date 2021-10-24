@@ -10,19 +10,18 @@ export const ProjectList = () => {
     name: "",
     personId: "",
   });
-  console.log(cleanObject(param));
   const [list, setList] = useState([]);
   const [users, setUsers] = useState([]);
-  const debouncedValue = useDebounce(param, 2000);
+  const debouncedParam = useDebounce(param, 1000);
   useEffect(() => {
-    fetch(`${apiUrl}/projects?${qs.stringify(cleanObject(param))}`).then(
-      async (response) => {
-        if (response.ok) {
-          setList(await response.json());
-        }
+    fetch(
+      `${apiUrl}/projects?${qs.stringify(cleanObject(debouncedParam))}`
+    ).then(async (response) => {
+      if (response.ok) {
+        setList(await response.json());
       }
-    );
-  }, [debouncedValue]);
+    });
+  }, [debouncedParam]);
 
   useEffect(() => {
     fetch(`${apiUrl}/users`).then(async (response) => {

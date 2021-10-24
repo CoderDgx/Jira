@@ -1,10 +1,13 @@
 import React from "react";
-import "./App.css";
-import ProjectList from "components/project-list";
+import { useAuth } from "context/auth-context";
+import { AuthenticatedApp } from "authenticated-app";
+import { UnauthenticatedApp } from "unauthenticated-app";
+
 function App() {
+  const { user } = useAuth();
   return (
     <div className="App">
-      <ProjectList />
+      {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
     </div>
   );
 }
