@@ -22,6 +22,7 @@ const List: FC<ListProps> = (props) => {
   return (
     <Table
       pagination={false}
+      rowKey={"id"}
       columns={[
         {
           title: "名称",
