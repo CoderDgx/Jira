@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import { Table } from "antd";
+import { Table, TableProps } from "antd";
 import { User } from "./SearchPanel";
 import dayjs from "dayjs";
 
-interface Project {
+export interface Project {
   id: string;
   name: string;
   personId: string;
@@ -12,13 +12,12 @@ interface Project {
   created: number;
 }
 
-interface ListProps {
-  list: Project[];
+interface ListProps extends TableProps<Project> {
   users: User[];
 }
 
 const List: FC<ListProps> = (props) => {
-  const { list, users } = props;
+  const { users, ...otherProps } = props;
   return (
     <Table
       pagination={false}
@@ -57,7 +56,7 @@ const List: FC<ListProps> = (props) => {
           },
         },
       ]}
-      dataSource={list}
+      {...otherProps}
     />
   );
 };
