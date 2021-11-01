@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import SearchPanel from "./SearchPanel";
 import List from "./list";
 import styled from "@emotion/styled";
@@ -7,12 +7,10 @@ import { Typography } from "antd";
 
 import { useProjects } from "utils/project";
 import { useUsers } from "utils/user";
+import { useUrlQueryParam } from "utils/url";
 
 export const ProjectList = () => {
-  const [param, setParam] = useState({
-    name: "",
-    personId: "",
-  });
+  const [param, setParam] = useUrlQueryParam(["name", "personId"]);
   const debouncedParam = useDebounce(param, 1000);
   const { isLoading, error, data: list } = useProjects(debouncedParam);
   const { data: users } = useUsers();

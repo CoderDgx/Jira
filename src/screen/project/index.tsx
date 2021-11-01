@@ -10,9 +10,9 @@ export const Project = () => {
       <Link to={"kanban"}>看板</Link>
       <Link to={"epic"}>任务组</Link>
       <Routes>
+        <Navigate to={window.location.pathname + "/kanban"} />
         <Route path={"/kanban"} element={<Kanban />} />
         <Route path={"/epic"} element={<Epic />} />
-        <Navigate to={window.location.pathname + "/kanban"} />
       </Routes>
     </div>
   );
