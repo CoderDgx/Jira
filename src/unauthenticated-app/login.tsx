@@ -2,7 +2,7 @@ import React from "react";
 import { useAuth } from "context/auth-context";
 import { Form, Input } from "antd";
 import { LongButton } from "unauthenticated-app";
-import { useAsync } from "utils/useAsync";
+import { useAsync } from "utils/use-async";
 
 const Login = ({ onError }: { onError: (error: Error) => void }) => {
   const { login } = useAuth();
