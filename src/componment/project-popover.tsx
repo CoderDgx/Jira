@@ -2,12 +2,9 @@ import React from "react";
 import { Button, Divider, List, Popover, Typography } from "antd";
 import { useProjects } from "utils/project";
 import styled from "@emotion/styled";
-import { ButtonNopadding } from "./lib";
 
-export const ProjectPopover = (props: {
-  setProjectModalOpen: (isOpen: boolean) => void;
-}) => {
-  const { setProjectModalOpen } = props;
+export const ProjectPopover = (props: { projectButton: JSX.Element }) => {
+  const { projectButton } = props;
   const { data: projects } = useProjects();
   const pinnedProjects = projects?.filter((project) => project.pin);
   const content = (
@@ -21,9 +18,7 @@ export const ProjectPopover = (props: {
         ))}
       </List>
       <Divider />
-      <ButtonNopadding onClick={() => setProjectModalOpen(true)} type="link">
-        创建项目
-      </ButtonNopadding>
+      {projectButton}
     </ContentContainer>
   );
   return (

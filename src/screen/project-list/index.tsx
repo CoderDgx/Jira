@@ -3,15 +3,13 @@ import SearchPanel from "./SearchPanel";
 import List from "./list";
 import styled from "@emotion/styled";
 import { useDebounce, useDocumentTitle } from "utils";
-import { Button, Row, Typography } from "antd";
+import { Row, Typography } from "antd";
 import { useProjects } from "utils/project";
 import { useUsers } from "utils/user";
 import { useProjectsSearchParams } from "./utils";
 
-export const ProjectList = (props: {
-  setProjectModalOpen: (isOpen: boolean) => void;
-}) => {
-  const { setProjectModalOpen } = props;
+export const ProjectList = (props: { projectButton: JSX.Element }) => {
+  const { projectButton } = props;
   useDocumentTitle("项目列表", false);
   const [param, setParam] = useProjectsSearchParams();
   const {
@@ -26,14 +24,14 @@ export const ProjectList = (props: {
     <Container>
       <Row justify="space-between">
         <h1>项目列表</h1>
-        <Button onClick={() => setProjectModalOpen(true)}>创建项目</Button>
+        {projectButton}
       </Row>
       <SearchPanel users={users || []} param={param} setParam={setParam} />
       {error ? (
         <Typography.Text type="danger">{error.message}</Typography.Text>
       ) : null}
       <List
-        setProjectModalOpen={setProjectModalOpen}
+        projectButton={projectButton}
         refresh={retry}
         loading={isLoading}
         users={users || []}

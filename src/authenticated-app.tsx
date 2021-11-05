@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router";
 import { BrowserRouter as Router, Navigate } from "react-router-dom";
 import { ProjectList } from "screen/project-list";
 import styled from "@emotion/styled";
-import { Row } from "componment/lib";
+import { ButtonNopadding, Row } from "componment/lib";
 import { Button, Dropdown, Menu } from "antd";
 import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
 import { Project } from "screen/project";
@@ -16,14 +16,32 @@ export const AuthenticatedApp = () => {
   const [projectModalOpen, setProjectModalOpen] = useState(false);
   return (
     <Container>
-      <PageHeader setProjectModalOpen={setProjectModalOpen} />
+      <PageHeader
+        projectButton={
+          <ButtonNopadding
+            onClick={() => setProjectModalOpen(true)}
+            type="link"
+          >
+            创建项目
+          </ButtonNopadding>
+        }
+      />
       <Main>
         <Router>
           <Routes>
             <Route
               path={"/projects"}
               element={
-                <ProjectList setProjectModalOpen={setProjectModalOpen} />
+                <ProjectList
+                  projectButton={
+                    <ButtonNopadding
+                      onClick={() => setProjectModalOpen(true)}
+                      type="link"
+                    >
+                      创建项目
+                    </ButtonNopadding>
+                  }
+                />
               }
             />
             <Route path={"/projects/:projectId/*"} element={<Project />} />
@@ -39,17 +57,14 @@ export const AuthenticatedApp = () => {
   );
 };
 
-const PageHeader = (props: {
-  setProjectModalOpen: (isOpen: boolean) => void;
-}) => {
-  const { setProjectModalOpen } = props;
+const PageHeader = (props: { projectButton: JSX.Element }) => {
   return (
     <Header between={true}>
       <HeaderLeft gap={true}>
         <Button style={{ padding: 0 }} type="link" onClick={resetRoute}>
           <SoftwareLogo width="18rem" color="rgb(38, 132, 255)" />
         </Button>
-        <ProjectPopover setProjectModalOpen={setProjectModalOpen} />
+        <ProjectPopover {...props} />
         <h3>用户</h3>
       </HeaderLeft>
       <HeaderRight>
