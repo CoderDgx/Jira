@@ -23,11 +23,10 @@ interface ListProps extends TableProps<Project> {
 }
 
 const List: FC<ListProps> = (props) => {
-  const { users, refresh, ...otherProps } = props;
+  const { users, ...otherProps } = props;
   const { mutate } = useEditProject();
   const { open } = useProjectModal();
-  const pinProject = (id: number) => (pin: boolean) =>
-    mutate({ id, pin }).then(refresh);
+  const pinProject = (id: number) => (pin: boolean) => mutate({ id, pin });
   return (
     <Table
       pagination={false}
