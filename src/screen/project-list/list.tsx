@@ -25,8 +25,9 @@ interface ListProps extends TableProps<Project> {
 const List: FC<ListProps> = (props) => {
   const { users, ...otherProps } = props;
   const { mutate } = useEditProject();
-  const { open } = useProjectModal();
+  const { startEdit } = useProjectModal();
   const pinProject = (id: number) => (pin: boolean) => mutate({ id, pin });
+  const editProject = (id: number) => () => startEdit(id);
   return (
     <Table
       pagination={false}
@@ -84,9 +85,15 @@ const List: FC<ListProps> = (props) => {
                 overlay={
                   <Menu>
                     <Menu.Item key={"edit"}>
-                      <ButtonNopadding type="link" onClick={open}>
+                      <ButtonNopadding
+                        type="link"
+                        onClick={editProject(project.id)}
+                      >
                         编辑
                       </ButtonNopadding>
+                    </Menu.Item>
+                    <Menu.Item key={"delete"}>
+                      <ButtonNopadding type="link">删除</ButtonNopadding>
                     </Menu.Item>
                   </Menu>
                 }
