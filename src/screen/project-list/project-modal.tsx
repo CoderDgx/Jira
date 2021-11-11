@@ -20,10 +20,16 @@ export const ProjectModal = (props: {}) => {
   } = useMutateProject(useProjectsQueryKey());
 
   const [form] = useForm();
+
+  const closeModal = () => {
+    form.resetFields();
+    close();
+  };
+
   const onFinish = (values: any) => {
     mutateAsync({ ...editingProject, ...values }).then(() => {
       form.resetFields();
-      close();
+      closeModal();
     });
   };
 
@@ -34,7 +40,7 @@ export const ProjectModal = (props: {}) => {
   return (
     <Drawer
       forceRender={true}
-      onClose={close}
+      onClose={closeModal}
       visible={projectModalOpen}
       width={"100%"}
     >
