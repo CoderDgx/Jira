@@ -1,5 +1,5 @@
 import React, { createContext, useContext, ReactNode } from "react";
-import { User } from "screen/project-list/SearchPanel";
+import { User } from "types/user";
 import * as auth from "auth-provider";
 import { http } from "utils/http";
 import { useMount } from "utils";
