@@ -1,5 +1,5 @@
 import React from "react";
-import SearchPanel from "./SearchPanel";
+import SearchPanel from "./search-panel";
 import List from "./list";
 import styled from "@emotion/styled";
 import { useDebounce, useDocumentTitle } from "utils";
