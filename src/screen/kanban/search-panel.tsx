@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 import { Button, Col, Input, Row } from "antd";
 import { TaskTypeSelect } from "componment/task-type-select";
 import { UserSelect } from "componment/user-select";
@@ -18,7 +19,7 @@ export const SearchPanel = () => {
   };
 
   return (
-    <Row gutter={[16, 16]}>
+    <Container gutter={[16, 16]}>
       <Col>
         <Input
           style={{ width: "20rem" }}
@@ -44,6 +45,10 @@ export const SearchPanel = () => {
       <Col>
         <Button onClick={reset}>清除筛选器</Button>
       </Col>
-    </Row>
+    </Container>
   );
 };
+
+const Container = styled(Row)`
+  margin-bottom: 4rem;
+`;
