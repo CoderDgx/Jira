@@ -32,4 +32,4 @@ export const useTasksSearchParams = () => {
   );
 };
 
-export const useTasksQueryKey = () => ["Tasks", useTasksSearchParams()];
+export const useTasksQueryKey = () => ["tasks", useTasksSearchParams()];
