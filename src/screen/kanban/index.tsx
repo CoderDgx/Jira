@@ -8,6 +8,7 @@ import { useTasks } from "utils/task";
 import { CreateKanban } from "./create-kanban";
 import { KanbanColumn } from "./kanban-column";
 import { SearchPanel } from "./search-panel";
+import { TaskModal } from "./task-modal";
 import {
   useKanbansSearchParams,
   useProjectInUrl,
@@ -27,7 +28,9 @@ export const Kanban = () => {
       <h1>{currentProject?.name}看板</h1>
       <SearchPanel />
       {isLoading ? (
-        <Spin size="large" />
+        <SpinContainer>
+          <Spin size="large" />
+        </SpinContainer>
       ) : (
         <ColumnsContainer>
           {kanbans?.map((kanban) => (
@@ -36,6 +39,7 @@ export const Kanban = () => {
           <CreateKanban />
         </ColumnsContainer>
       )}
+      <TaskModal />
     </ScreenContainer>
   );
 };
@@ -44,4 +48,11 @@ export const ColumnsContainer = styled.div`
   display: flex;
   overflow-x: scroll;
   flex: 1;
+`;
+
+export const SpinContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 `;

@@ -25,7 +25,7 @@ export const Row = styled.div<{
   }
 `;
 
-const FullPage = styled.div`
+export const FullPage = styled.div`
   height: 100vh;
   display: flex;
   justify-content: center;
