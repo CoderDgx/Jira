@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Routes, Route, Navigate, useLocation } from "react-router";
 import { Kanban } from "screen/kanban";
-import { Epic } from "screen/epic";
+import { EpicScreen } from "screen/epic";
 import styled from "@emotion/styled";
 import { Menu } from "antd";
 
@@ -28,7 +28,7 @@ export const Project = () => {
       <Main>
         <Routes>
           <Route path={"/kanban"} element={<Kanban />} />
-          <Route path={"/epic"} element={<Epic />} />
+          <Route path={"/epic"} element={<EpicScreen />} />
           <Navigate to={window.location.pathname + "/kanban"} />
         </Routes>
       </Main>
@@ -51,4 +51,5 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 16rem 1fr;
   overflow: hidden;
+  width: 100%;
 `;
