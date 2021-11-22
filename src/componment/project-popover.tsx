@@ -1,13 +1,13 @@
 import React from "react";
-import { Button, Divider, List, Popover, Typography } from "antd";
+import { Divider, List, Popover, Typography } from "antd";
 import { useProjects } from "utils/project";
 import styled from "@emotion/styled";
-import { ButtonNopadding } from "./lib";
+import { ButtonNoMargin, ButtonNopadding } from "./lib";
 import { useProjectModal } from "screen/project-list/utils";
 import { useNavigate } from "react-router-dom";
 
 export const ProjectPopover = () => {
-  const { data: projects } = useProjects();
+  const { data: projects, refetch } = useProjects();
   const pinnedProjects = projects?.filter((project) => project.pin);
   const { open } = useProjectModal();
   const navigate = useNavigate();
@@ -28,10 +28,14 @@ export const ProjectPopover = () => {
     </ContentContainer>
   );
   return (
-    <Popover placement="bottom" content={content}>
-      <Button type="text" onClick={() => navigate("/projects")}>
+    <Popover
+      onVisibleChange={() => refetch()}
+      placement="bottom"
+      content={content}
+    >
+      <ButtonNoMargin type="text" onClick={() => navigate("/projects")}>
         项目
-      </Button>
+      </ButtonNoMargin>
     </Popover>
   );
 };

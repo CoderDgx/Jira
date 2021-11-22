@@ -63,6 +63,10 @@ export const ButtonNopadding = styled(Button)`
   padding: 0;
 `;
 
+export const ButtonNoMargin = styled(Button)`
+  margin-right: 0;
+`;
+
 export const ScreenContainer = styled.div`
   padding: 3.2rem;
   width: 100%;
